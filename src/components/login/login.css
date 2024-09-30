@@ -1,20 +1,11 @@
-.normal-login{
-
+.labels {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
 }
 
-.error-login{
-    
+.height-control{
+    height: 4rem;
 }
 
-#id{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#form-login{
-    width: 95%;
-    margin-bottom: 15px;
-    justify-content: center;
-    align-items: center;
-}

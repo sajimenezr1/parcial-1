@@ -4,11 +4,29 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { IntlProvider } from 'react-intl';
+import localeEsMessages from "./locales/es";
+import localeEnMessages from './locales/en';
+
+const messages = {
+  'es-ES': localeEsMessages,
+  'en-US': localeEnMessages,
+};
+
+
+const getBrowserLanguage = () => {
+  const language = navigator.language || navigator.userLanguage;
+  return messages[language] ? language : 'es-ES';
+};
+
+const language = getBrowserLanguage();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <IntlProvider locale={language} messages={messages[language]}>
+      <App />
+    </IntlProvider>
   </React.StrictMode>
 );
 

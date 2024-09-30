@@ -1,0 +1,16 @@
+{
+    "Header" : "Adopta un robot con Robot Lovers!",
+    "ContactUs" : "Contáctanos:",
+    "Login" : "Inicio de sesión", 
+    "UserName": "Nombre de usuario",
+    "Password" : "Contraseña",
+    "SignIn" : "Ingresar",
+    "Cancel" : "Cancelar",
+    "ErrorMessage" : "Error de autenticación. Revise sus credenciales",
+    "Name" : "Nombre", 
+    "Model" : "Modelo",
+    "ManufacturerBrand" : "Marca fabricante",
+    "FabricationYear" : "Año de fabricación: ",
+    "ProcessingCapacity" : "Capacidad de procesamiento: ",
+    "Humor" : "Humor: "
+}

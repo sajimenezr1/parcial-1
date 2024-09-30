@@ -1,45 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './login.css'
 import { authenticateUser } from './services';
-
+import { useNavigate } from 'react-router-dom';
+import { FormattedMessage } from "react-intl"
 
 export const Login = () => {
-    const [classValue, setClassValue] = useState('normal-login');
+    const [classValue, setClassValue] = useState('form-control bg-dark-subtle rounded-0 height-control ');
     const [formValues, setFormValues] = useState({ user: "", password: "" });
-
+    const [ validationState, setValidationState ] = useState(false);
+    const navigate = useNavigate()
 
     const handleUserChange = ((e) => {
-        setFormValues({ ...formValues, email: e.target.value })
+        setFormValues({ ...formValues, user: e.target.value });
     });
 
     const handlePasswordChange = ((e) => {
-        setFormValues({ ...formValues, password: e.target.value })
+        setFormValues({ ...formValues, password: e.target.value });
     });
 
     const handleLogin = async () => {
         const data = await authenticateUser(formValues);
-        if (data == 'error'){
-            setClassValue('error-login')
-        }else{
-            // TO DO navigate 
+        if (data == 'error' || data.status == 'error') {
+            setClassValue('form-control bg-dark-subtle rounded-0 height-control border-danger')
+            setValidationState(true)
+        } else {
+            navigate('/home')
         }
     }
 
 
     return (
-        <div className='col d-flex flex-column justify-content-center align-items-center'>
-            <h2>Inicio de sesión</h2>
-            <form id='form-login'>
-                <label htmlFor="email">Nombre de usuario</label>
-                <input id="user" className={classValue} onChange={handleUserChange} value={formValues.user} autoComplete='off' required />
+        <div className='container d-flex flex-column justify-content-center align-items-center mt-4 mb-5'>
+
+            <h2 className='fw-bold'><FormattedMessage id="Login"/></h2>
+
+            <form className="col-5 d-flex flex-column m-3 gap-2" id='form-login'>
+
+                <label htmlFor="user" className='labels'><FormattedMessage id="UserName"/></label>
+                <input type ="user" className={classValue} onChange={handleUserChange} value={formValues.user} autoComplete='off'  />
+
+                <label htmlFor="password" className='labels'><FormattedMessage id="Password"/></label>
+                <input type="password" className={classValue} onChange={handlePasswordChange} value={formValues.password} autoComplete='off'  />
                 
-                <label htmlFor="password">Contraseña</label>
-                <input type="password" id="password" className={classValue} onChange={handlePasswordChange} value={formValues.password} autoComplete='off' required />
+                <div className="d-flex justify-content-between mt-4 gap-3">
+                    <button type='button' className='btn  font-weight-bold btn-primary rounded-0  w-50 height-control' onClick={handleLogin} ><FormattedMessage id="SignIn"/></button>
+                    <button type='button' className='btn font-weight-bold btn-danger rounded-0  w-50 height-control'><FormattedMessage id="Cancel"/></button>
+                </div>
+                {validationState && <p className='text-danger fw-bold fs-5'><FormattedMessage id="ErrorMessage"/></p>}
+
             </form>
-            <div className="row">
-                <button type='button' className='col btn btn-primary' onClick={handleLogin} >Ingresar</button>
-                <button type='button' className='col btn btn-danger'>Cancelar</button>
-            </div>
+
 
         </div>
     )

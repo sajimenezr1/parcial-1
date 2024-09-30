@@ -1,0 +1,29 @@
+.home{
+    min-height: 80vh;
+}
+
+.table-select{
+    cursor: pointer;
+}
+
+.img-detail{
+    max-width: 210px;
+    max-height: 200px;
+}
+
+.custom-icon-list {
+    list-style-type: none; /* Elimina las viñetas predeterminadas */
+    padding: 0;
+}
+
+.custom-icon-list li {
+    position: relative;
+    padding-left: 20px; /* Ajusta el espacio para el símbolo */
+}
+
+.custom-icon-list li::before {
+    content: '➜'; /* Usa el símbolo deseado */
+    position: absolute;
+    left: 0; /* Posiciona a la izquierda del texto */
+    color: black; /* Cambia el color según tus necesidades */
+}
